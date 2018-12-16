@@ -1,26 +1,52 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
           <a class="navbar-brand" href="#">
-                <img src="assets/valiant_logo.jpg" alt="">
+                <img style="margin-left: -100px;" src="assets/valiant_logo.jpg" alt="">
               </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home
-                      <span class="sr-only">(current)</span>
+              <li class="nav-item ">
+                <a  style="color:#fff;" class="nav-link" routerLink="/" >Home
+                      
                     </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
+                  <a style="color:#fff" class="nav-link" routerLink="/viewuserpage">Caller Details</a>
+                </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
+                <a style="color:#fff"  class="nav-link" routerLink="/reports">Reports</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+              <!-- <li class="nav-item">
+                <a style="color:#fff" class="nav-link" routerLink="/knowledge">knowledge base</a>
+              </li> -->
+             
+              <li>
+                  <div class="container">
+                      <div class="dropdown" style="margin-top: 8px;">
+                        <a style="color:#fff" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <!-- <img style="width:40px;border-radius: 6px;" src="assets/no.jpg"> -->
+                          Admin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" routerLink="/masterpagecallnote">Callnote</a>
+                          <a class="dropdown-item" routerLink="/masterpagekt">Knowledge Base</a>
+                         
+                        </div>
+                      </div>
+                      </div>
               </li>
+
+              
+ 
+
+
             </ul>
+
+            
+
           </div>
+
+          

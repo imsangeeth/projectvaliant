@@ -1,0 +1,173 @@
+<app-header></app-header>
+
+<div class="page-wrapper">
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h5 class="text-primary">Report Page</h5> </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Add New Customer</li> -->
+            </ol>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row justify-content-center">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-validation">
+                <div class="card-body">
+                
+                    <div class="form-body">
+    
+                        <h5 class="box-title m-t-40">Reports</h5>
+                        <hr>
+                        
+                        <form>
+                        <div class="row">
+                            
+                              <div class="col-md-6 ">
+                              <div class="form-group">
+                                            <label>From date</label>                                                          
+                                            <input type="date" name="fromdate"  class="form-control" />
+                                          
+                                        </div>
+                                        </div>
+    
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                          <label>To date</label>                                                          
+                                                          <input type="date" name="todate"  class="form-control" />
+                                                        
+                                                      </div>
+                                                      </div>
+
+                                                     <div class="col-md-6 ">
+                                      <div class="form-group">
+                                                    <label>Call Status <span>*</span></label>                                                          
+                                                    <select  name="Individual_sevan"  class="form-control custom-select">
+                                                        <option value="">Please Choose One</option>
+                                                        <option  value="department1">Open</option>
+                                                        <option  value="department2">close</option>
+                                                        <option  value="department2">Followup</option>
+                                                   </select>
+                                                    
+                                                </div>
+                                                </div>
+                                                 <div class="col-md-6 ">
+                                      <div class="form-group">
+                                                    <label>Agent Name<span>*</span></label>                                                          
+                                                    <select  name="Individual_sevan"  class="form-control custom-select">
+                                                        <option value="">Please Choose One</option>
+                                                    <option  value="department1">Agentname1</option>
+                                                    <option  value="department2">Agentname2</option>
+                                                    <option  value="department2">Agentname3</option>
+                                                   </select>
+                                                    
+                                                </div>
+                                                </div>
+                                                <div class="col-md-6 ">
+                                                    <div class="form-group">
+                                                                  <label>Call Reason <span>*</span></label>                                                          
+                                                                  <select  name="Individual_sevan"  class="form-control custom-select">
+                                                                      <option value="">Please Choose One</option>
+                                                                  <option  value="department1">Appointment</option>
+                                                                  <option  value="department2">Cancellation</option>
+                                                                  
+                                                                 </select>
+                                                                  
+                                                              </div>
+                                                              </div>
+                                        
+                                        <div class="col-md-6 "></div>
+                                     
+                                        <div class="col-md-6 ">
+                                        <div class="form-actions">
+                                            <button (click)="isview()"   class="btn btn-primary" style="margin: 8px;">Generate</button>
+                                            <button  type="button" class="btn btn-inverse">Cancel</button>
+                                        </div>
+                                        </div>
+                                    
+                                
+                            </div></form>
+    
+                            <div class="row" *ngIf="isreportview"> 
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body" style="padding: 0px;">
+                                            <div class="table-responsive m-t-40">
+                                                    <button (click)="exportAsXLSX()" style="margin-bottom: 21px"  class="btn btn-primary" >Export Excel</button><br>
+                                                <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                                    <thead>
+                                                             <tr>
+                                                              <th>Caller Number</th>
+                                                              
+                                                              <th>Called Time </th>
+                                                              <th>Call Direction </th>
+                                                              <th>Email ID</th>
+                                                              <th>DOB</th>                    
+                                                              <th>Nationality</th> 
+                                                              <th>Appointment Branch </th>                                      
+                                                              <th>Insurance company </th>
+                                                              <th>Call Status </th>
+                                                              <th>Call Reason </th>
+                                                              <th>MRN Number</th>
+                                                              
+                                                              
+                                                              </tr>
+                                                    </thead>
+                                                    
+                                                    <tbody> 
+                                                                                 <tr >
+                                                                                    <td>0525174288</td>
+                                                                                   
+                                                                                    <td>2018-12-11 20:29</td>
+                                                                                    <td>12 min</td>
+                                                                                    <td>Azar@gmail.com</td>
+                                                                                    <td>10-12-1984</td>
+                                                                                    <td>UAE</td>
+                                                                                    <td>Cardiology</td>
+                                                                                    <td>NAZ</td>
+                                                                                    <td>Open</td>
+                                                                                    <td>Open</td>
+                                                                                    <td>768883893</td>
+                                                                                      
+                                                                                </tr>
+
+                                                                                <tr >
+                                                                                    <td>0525174315</td>
+                                                                                   
+                                                                                    <td>2018-12-13 10:29</td>
+                                                                                    <td>4 min</td>
+                                                                                    <td>ram@gmail.com</td>
+                                                                                    <td>10-12-1991</td>
+                                                                                    <td>India</td>
+                                                                                    <td>Cardiology</td>
+                                                                                    <td>NAZ</td>
+                                                                                    <td>Open</td>
+                                                                                    <td>Open</td>
+                                                                                    <td>368883893</td>
+                                                                                      
+                                                                                </tr>
+                                                                               
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                </div>
+                            </div>
+    
+                    
+    
+                        </div>
+            </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    </div></div>

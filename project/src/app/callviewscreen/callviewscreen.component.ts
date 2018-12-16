@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./callviewscreen.component.css']
 })
 export class CallviewscreenComponent implements OnInit {
+ 
+  isshow:boolean = false
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  show()
+  {
+    this.isshow = true;
+  }
+
 
 }

@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KnowledgetranferComponent implements OnInit {
 
+  isshow:boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  show()
+  {
+    this.isshow = true;
+  }
+
 
 }

@@ -14,11 +14,12 @@
                     <!-- Bread crumb -->
                     <div class="row page-titles">
                         <div class="col-md-5 align-self-center">
-                            <h3 class="text-primary">Mohammed azharuddeen from 0525174288</h3> </div>
+                            <h3 class="text-primary">Mohammed azharuddeen (0525174288)</h3> </div>
                         <div class="col-md-7 align-self-center">
                             <ol class="breadcrumb">
                                 <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                                 <li class="breadcrumb-item active">Dashboard</li> -->
+                                <input class="form-control input-sm" type="textbox" placeholder="Search" >
                             </ol>
                         </div>
                     </div>
@@ -241,9 +242,9 @@
                                                         </div>
 
                                                         <div ><label style="margin-bottom: 18px; margin-top: 20px;font-size: 16px;font-weight: bold;">Call Note</label>
-                                                            <label style="margin-bottom: 18px; margin-top: 20px;font-size: 16px;margin-left: 640px;font-weight: bold;">Send SMS</label> <hr></div>
+                                                             <hr></div>
                                                         <div class="row" style="overflow: hidden;">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-12">
                                                            <form style="overflow-x: hidden" >
                                                                         <div class="row" style="margin-top: 2%">
                                                                                 <div class="col-md-6 ">
@@ -251,7 +252,8 @@
                                                                                             <label>Call Reasons </label><span>*</span>
                                                                                             <select  name="Reason"  class="form-control custom-select" >
                                                                                                 <option value="">Choose Reasons</option>
-                                                                                                <option ></option>
+                                                                                                <option >Appointment</option>
+                                                                                                <option >Cancellation</option>
                                                                                               
                                                                                           </select> 
                                                                                            
@@ -262,7 +264,10 @@
                                                                                             <label>Call status</label><span>*</span>
                                                                                             <select  name="Reason"  class="form-control custom-select">
                                                                                                 <option value="">Select Status</option>
-                                                                                                <option ></option>
+                                                                                                <option >Open</option>
+                                                                                                <option >Close</option>
+                                                                                                <option >Followup</option>
+                                                                                                
                                                                                           </select>
                                                                                           
                                                                                         </div>
@@ -273,7 +278,8 @@
                                                                                                     <label>Appointment branch</label><span>*</span>
                                                                                                     <select  name="Reason"  class="form-control custom-select">
                                                                                                         <option value="">Select branch</option>
-                                                                                                        <option ></option>
+                                                                                                        <option >branch one</option>
+                                                                                                        <option >branch two</option>
                                                                                                   </select>
                                                                                                   
                                                                                                 </div>
@@ -300,50 +306,17 @@
                                                                                         <div class="col-md-6 ">
                                                                                         <div class="form-actions">
                                                                                             <button  class="btn btn-primary" style="margin: 8px;">Create</button>
-                                                                                            <button (click)="cancel_form()" type="button" class="btn btn-inverse">Cancel</button>
+                                                                                            <button  type="button" class="btn btn-inverse">Cancel</button>
                                                                                         </div>
                                                                                         </div>
                                                                                     
                                                                                 
                                                                             </div></form></div>
 
-                                                                            <div class="col-md-6">
-                                                                                    <form style="overflow-x: hidden" >
-                                                                                                 <div class="row" style="margin-top: 2%">
-                                                                                                         <div class="col-md-6 ">
-                                                                                                                 <div class="form-group">
-                                                                                                                     <label>Select Template</label><span>*</span>
-                                                                                                                     <select  name="Reason"  class="form-control custom-select" >
-                                                                                                                         <option value="">Choose Template</option>
-                                                                                                                         <option ></option>
-                                                                                                                       
-                                                                                                                   </select> 
-                                                                                                                    
-                                                                                                                 </div>
-                                                                                                                   </div> 
-                                                                                                                 
-                         
-                                                                                                                    <div class="col-md-6 ">
-                                                                                                                         <div class="form-group">
-                                                                                                                             <label>Message  </label><span>*</span>
-                                                                                                                             <textarea class="form-control" ></textarea>
-                                                                                                                            
-                                                                 
-                                                                                                                         </div>
-                                                                                                                    </div>
-                              
-                                                                                                                 <div class="col-md-6 "></div>
-                                                                                                                 <div class="col-md-6 "></div>
-                                                                                                                 <div class="col-md-6 ">
-                                                                                                                 <div class="form-actions">
-                                                                                                                     <button  class="btn btn-primary" style="margin: 8px;">Send SMS</button>
-                                                                                                                     <button (click)="cancel_form()" type="button" class="btn btn-inverse">Cancel</button>
-                                                                                                                 </div>
-                                                                                                                 </div>
-                                                                                                             
-                                                                                                         
-                                                                                                     </div></form></div>
+                                                                            
                                                         </div>
+                                                        
+                                                       
 
                                                      </mat-tab>
                                                     <mat-tab label="Call History">
@@ -461,7 +434,7 @@
                                                                                                               <div class="col-md-6 ">
                                                                                                               <div class="form-actions">
                                                                                                                   <button  class="btn btn-primary" style="margin: 8px;">Create Services</button>
-                                                                                                                  <button (click)="cancel_form()" type="button" class="btn btn-inverse">Cancel</button>
+                                                                                                                  <button type="button" class="btn btn-inverse">Cancel</button>
                                                                                                               </div>
                                                                                                               </div>
                                                                                                           
@@ -476,6 +449,261 @@
                                                                 </div>
                                                             </div>
                                                         </div></mat-tab>
+                                                        <mat-tab label="Knowledge base" >
+                                                                <div class="row justify-content-center">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="card">
+                                                                                <div class="card-body">
+                                                                                    <div class="form-validation">
+                                                                                    <div class="card-body">
+                                                                                    
+                                                                                        <div class="form-body">
+                                                            
+                                                                                            <h5 class="box-title m-t-40">Knowledge base</h5>
+                                                                                            <hr>
+                                                                                            
+                                                                                            <form>
+                                                                                            <div class="row">
+                                                                                                
+                                                                                                  <div class="col-md-6 ">
+                                                                                                  <div class="form-group">
+                                                                                                                <label>Department<span>*</span></label>                                                          
+                                                                                                                <select  name="Individual_sevan"  class="form-control custom-select">
+                                                                                                                    <option value="">Please Choose One</option>
+                                                                                                                <option  value="department1">Specialist Obstetrician and Gynecologist</option>
+                                                                                                                <option  value="department2">Consultant Radiologist</option>
+                                                                                                                <option  value="department2">Consultant Pediatrician</option>
+                                                                                                                <option  value="department2">Consultant Dermatology</option>
+                                                                                                               </select>
+                                                                                                                
+                                                                                                            </div>
+                                                                                                            </div>
+                                                            
+                                                                                                            <div class="col-md-6 ">
+                                                                                                                <div class="form-group">
+                                                                                                                              <label>Doctor<span>*</span></label>                                                          
+                                                                                                                              <select  name="Individual_sevan"  class="form-control custom-select">
+                                                                                                                                  <option value="">Please Choose One</option>
+                                                                                                                              <option  value="Doctor1">Dr. Amal Badi</option>
+                                                                                                                              <option  value="Doctor2">Dr. Alexander Milson</option>
+                                                                                                                              <option  value="Doctor3">Dr. Badi Alatasi</option>
+                                                                                                                              <option  value="Doctor4">Dr. Christina Engman</option>
+                                                                                                                              
+                                                                                                                             </select>
+                                                                                                                             
+                                                                                                                          </div>
+                                                                                                                          </div>
+                                                                                                            
+                                                                                                            <div class="col-md-6"></div>
+                                                                                                         
+                                                                                                            <div class="col-md-6" >
+                                                                                                            <div class="form-actions">
+                                                                                                                <button (click)="show()"  class="btn btn-primary" style="margin: 8px;">Check</button>
+                                                                                                                <button  type="button" class="btn btn-inverse">Cancel</button>
+                                                                                                            </div>
+                                                                                                            </div>
+                                                            
+                                                                                                </div></form>
+                                                            
+                                                                                                <div class="row" *ngIf="isshow" >
+                                                                                                    <div class="col-3">
+                                                                                                        <div class="card">
+                                                                                                            <div class="card-body" style="padding: 0px;">
+                                                                                                                <div class="table-responsive m-t-40">
+                                                                                                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                                                                                                        <thead>
+                                                                                                                                 <tr>
+                                                                                                                                  <th style="width: 16%;">Doctor Note</th>
+                                                                                                                                 
+                                                                                                                                  </tr>
+                                                                                                                        </thead>
+                                                                                                                        
+                                                                                                                        <tbody> 
+                                                                                                                                                     <tr >
+                                                                                                                                                        <td>i am not available tomorrow</td>
+                                                            
+                                                                                                                                                    </tr>
+                                                                                                                                                   
+                                                                                                                        </tbody>
+                                                                                                                    </table>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                
+                                                                                                    </div>
+                                                                                                    <div class="col-3">
+                                                                                                        <div class="card">
+                                                                                                            <div class="card-body" style="padding: 0px;">
+                                                                                                                <div class="table-responsive m-t-40">
+                                                                                                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                                                                                                        <thead>
+                                                                                                                                 <tr>
+                                                                                                                                  <th style="width: 16%;">Doctor Booking Instructions </th>
+                                                                                                                                
+                                                                                                                                  </tr>
+                                                                                                                        </thead>
+                                                                                                                        
+                                                                                                                        <tbody> 
+                                                                                                                                                     <tr >
+                                                                                                                                                        <td>booking </td>
+                                                                                                                                                                                                                                           
+                                                                                                                                                    </tr>
+                                                                                                                                                   
+                                                                                                                        </tbody>
+                                                                                                                    </table>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                
+                                                                                                    </div>
+                                                                                                    <div class="col-3">
+                                                                                                        <div class="card">
+                                                                                                            <div class="card-body" style="padding: 0px;">
+                                                                                                                <div class="table-responsive m-t-40">
+                                                                                                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                                                                                                        <thead>
+                                                                                                                                 <tr>
+                                                                                                                                  <th style="width: 16%;">Promo</th>
+                                                                                                                                  
+                                                                                                                                  </tr>
+                                                                                                                        </thead>
+                                                                                                                        
+                                                                                                                        <tbody> 
+                                                                                                                                                     <tr >
+                                                                                                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                                                                                                                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</td>
+                                                                                                                                                      
+                                                                                                                                                        
+                                                                                                                                                    </tr>
+                                                                                                                                                   
+                                                                                                                        </tbody>
+                                                                                                                    </table>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                
+                                                                                                    </div>
+                                                                                                    <div class="col-3">
+                                                                                                        <div class="card">
+                                                                                                            <div class="card-body" style="padding: 0px;">
+                                                                                                                <div class="table-responsive m-t-40">
+                                                                                                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                                                                                                        <thead>
+                                                                                                                                 <tr>
+                                                                                                                                  <th style="width: 16%;">Insurance/Billing </th>
+                                                                                                                                 
+                                                                                                                                  </tr>
+                                                                                                                        </thead>
+                                                                                                                        
+                                                                                                                        <tbody> 
+                                                                                                                                                     <tr >
+                                                                                                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                                                                                                                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</td>
+                                                                                                                                                       
+                                                                                                                                                        
+                                                                                                                                                    </tr>
+                                                                                                                                                   
+                                                                                                                        </tbody>
+                                                                                                                    </table>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                
+                                                                                                    </div>
+                                                                                                </div>
+                                                            
+                                                                                        
+                                                            
+                                                                                            </div>
+                                                                                </div>
+                                                                                    </div>
+                                                            
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                            
+                                                                       
+                                                                       
+                                                            
+                                                                       
+                                                                    </div>
+                                                            
+                                                        </mat-tab>
+        
+                                                <mat-tab label="SMS">
+                                                        <div class="row justify-content-center">
+                                                                <div class="col-lg-12">
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            <div class="form-validation">
+                                                                            <div class="card-body">
+                                                                            
+                                                                                <div class="form-body">
+                                                    
+                                                                                    <h5 class="box-title m-t-40">Knowledge base</h5>
+                                                                                    <hr>
+                                                                                    
+                                                                                    <form>
+                                                        <div class="row">
+                                                                <div class="col-md-6">
+                                                                        <form style="overflow-x: hidden" >
+                                                                                     <div class="row" style="margin-top: 2%">
+                                                                                             <div class="col-md-6 ">
+                                                                                                     <div class="form-group">
+                                                                                                         <label>Select Template</label><span>*</span>
+                                                                                                         <select  name="Reason"  class="form-control custom-select" >
+                                                                                                             <option value="">Choose Template</option>
+                                                                                                             <option >Template One</option>
+                                                                                                             <option >Template Two</option>
+                                                                                                           
+                                                                                                       </select> 
+                                                                                                        
+                                                                                                     </div>
+                                                                                                       </div> 
+                                                                                                       <div class="col-md-6 ">
+                                                                                                            <div class="form-group">
+                                                                                                                <label>Phone Number</label><span>*</span>
+                                                                                                                <input type="text" class="form-control" >
+                                                                                                               
+                                                                                                            </div>
+                                                                                                              </div>           
+             
+                                                                                                        <div class="col-md-6 ">
+                                                                                                             <div class="form-group">
+                                                                                                                 <label>Message  </label><span>*</span>
+                                                                                                                 <textarea class="form-control" ></textarea>
+                                                                                                                
+                                                     
+                                                                                                             </div>
+                                                                                                        </div>
+                  
+                                                                                                     <div class="col-md-6 "></div>
+                                                                                                     <div class="col-md-6 "></div>
+                                                                                                     <div class="col-md-6 ">
+                                                                                                     <div class="form-actions">
+                                                                                                         <button  class="btn btn-primary" style="margin: 8px;">Send SMS</button>
+                                                                                                         <button  type="button" class="btn btn-inverse">Cancel</button>
+                                                                                                     </div>
+                                                                                                     </div>
+                                                                                                 
+                                                                                             
+                                                                                         </div></form></div>
+
+                                                        </div></form>  </div>
+                                                    </div>
+                                                        </div>
+                                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                           
+                                           
+                                
+                                           
+                                        </div>
+                                                </mat-tab>
+                                               
                                                   </mat-tab-group>
                                     </div>
                                 </div>

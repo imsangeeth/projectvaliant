@@ -328,6 +328,12 @@
   .bg-theme {
     background-color: #1976d2;
   }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: 0px;
+  }
   .bg-inverse {
     background-color: #2f3d4a;
   }
@@ -2164,9 +2170,18 @@
   ------------------*/
   /*    Brand color
   ----------------------*/
-  .card {
+  /* .card {
     margin-bottom: 30px;
-  }
+  } */
+
+  .card {
+    background: #ffffff none repeat scroll 0 0;
+    margin: 15px 0;
+    padding: 20px;
+    border: 0 solid #e7e7e7;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
   .card .card-subtitle {
     color: #99abb4;
     font-weight: 300;
@@ -2847,7 +2862,7 @@
     box-shadow: 0 14px 26px -12px rgba(169, 169, 169, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(169, 169, 169, 0.2);
   }
   .btn-primary {
-    background: #6c6c69;
+    background: #4a794c;
     border: 1px solid #cccbd2;
     -webkit-box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
     box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
@@ -2861,11 +2876,11 @@
     align-items: center;
     white-space: nowrap;
     color: #000;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
 }
   .btn-primary:hover {
-    background: #007bff;
+    background: #2b4b2d;
     -webkit-box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
     box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
     border: 1px solid #007bff;
@@ -4896,9 +4911,18 @@
     height: 42px;
     border-radius: 0;
     box-shadow: none;
-    border-color: #e7e7e7;
+    border-color: #ababab;
     font-family: 'Poppins', sans-serif;
   }
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+  }
+  
   .form-control:hover {
     box-shadow: none;
     border-color: #e7e7e7;

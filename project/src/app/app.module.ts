@@ -17,6 +17,11 @@ import { HeaderComponent } from './header/header.component';
 import { CallviewscreenComponent } from './callviewscreen/callviewscreen.component';
 import { UiModule } from './ui/ui.module';
 import { KnowledgetranferComponent } from './knowledgetranfer/knowledgetranfer.component';
+import { ReportsComponent } from './reports/reports.component';
+import { MasterpagecallnoteComponent } from './masterpagecallnote/masterpagecallnote.component';
+import { MasterpagektComponent } from './masterpagekt/masterpagekt.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderuserComponent } from './headeruser/headeruser.component';
 
 
 @NgModule({
@@ -24,7 +29,12 @@ import { KnowledgetranferComponent } from './knowledgetranfer/knowledgetranfer.c
     AppComponent,
     HeaderComponent,
     CallviewscreenComponent,
-    KnowledgetranferComponent
+    KnowledgetranferComponent,
+    ReportsComponent,
+    MasterpagecallnoteComponent,
+    MasterpagektComponent,
+    HomeComponent,
+    HeaderuserComponent
   ],
   imports: [
     BrowserModule,
