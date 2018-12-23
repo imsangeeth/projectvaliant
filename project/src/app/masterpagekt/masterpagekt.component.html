@@ -27,17 +27,16 @@
                                 <h5 class="box-title m-t-40">Knowledge Base</h5>
                                 <hr>
                                 
-                                <form >
+                                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                                 <div class="row">
 
                                     <div class="col-md-6 ">
                                         <div class="form-group">
                                                       <label>Department<span>*</span></label>                                                          
-                                                      <select  name="Individual_sevan"  class="form-control custom-select">
+                                                      <select (change)="onChangecategory($event.target.value)" formControlName="DepartmentName"   name="DepartmentName"   class="form-control custom-select">
                                                           <option value="">Please Choose One</option>
-                                                      <option  value="department1">department1</option>
-                                                      <option  value="department2">department2</option>
-                                                      <option  value="department2">department2</option>
+                                                      <option  *ngFor="let viewdepartment of viewdepartment$" value="{{viewdepartment.typId}}">{{viewdepartment.department}}</option>
+                                                     
                                                      </select>
                                                       
                                                   </div>
@@ -46,13 +45,11 @@
                                                   <div class="col-md-6 ">
                                                       <div class="form-group">
                                                                     <label>Doctor<span>*</span></label>                                                          
-                                                                    <select  name="Individual_sevan"  class="form-control custom-select">
+                                                                    <select  name="Doctor" formControlName="Doctor"  class="form-control custom-select">
                                                                         <option value="">Please Choose One</option>
-                                                                    <option  value="Doctor1">Doctor1</option>
-                                                                    <option  value="Doctor2">Doctor2</option>
-                                                                    <option  value="Doctor3">Doctor3</option>
-                                                                    <option  value="Doctor4">Doctor4</option>
-                                                                    
+                                                                    <option *ngFor="let viewdepartment of viewdepartmentuser$"  value="{{viewdepartment.id}}">{{viewdepartment.department}}</option>
+                                                                   
+             
                                                                    </select>
                                                                    
                                                                 </div>
@@ -61,14 +58,10 @@
 
                                                                 <div class="col-md-6 ">
                                                                     <div class="form-group">
-                                                                                  <label>Reason<span>*</span></label>                                                          
-                                                                                  <select  name="Individual_sevan"  class="form-control custom-select">
+                                                                                  <label>Knowledge Base<span>*</span></label>                                                          
+                                                                                  <select formControlName="Knowledge_base"  name="Knowledge_base"  class="form-control custom-select">
                                                                                       <option value="">Please Choose One</option>
-                                                                                  <option  value="Doctor1">Doctor Note</option>
-                                                                                  <option  value="Doctor2">Insurance/Billing</option>
-                                                                                  <option  value="Doctor3">Promo</option>
-                                                                                  <option  value="Doctor4">Doctor Booking Instructions</option>
-                                                                                  
+                                                                                  <option *ngFor="let viewknowldgebasename of viewknowldgebasename$"  value="{{viewknowldgebasename.typId}}">{{viewknowldgebasename.knowldge}}</option>
                                                                                  </select>
                                                                                  
                                                                               </div>
@@ -76,26 +69,33 @@
                                       <div class="col-md-6 ">
                                       <div class="form-group">
                                                     <label>Message<span>*</span></label>                                                          
-                                                    <input type="text" name="Calltype"   class="form-control" />
+                                                    <input type="text" formControlName="Message" name="Message" name="Calltype"   class="form-control" />
                                                     
                                                 </div>
                                                 </div>
                                                 
                                                 <div class="col-md-6 "></div>
                                              
-                                                <div class="col-md-6 " >
-                                                <div class="form-actions">
-                                                    <button class="btn btn-primary" style="margin: 8px;">Create</button>
-                                                    <button  type="button" class="btn btn-inverse">Cancel</button>
-                                                </div>
-                                                </div>
+                                                <div class="col-md-6 " *ngIf="iscalltypebutton" >
+                                                    <div class="form-actions">
+                                                        <button [disabled]="registerForm.pristine || registerForm.invalid" class="btn btn-primary" style="margin: 8px;">Create</button>
+                                                        <button (click)="cancel_form()" type="button" class="btn btn-inverse">Cancel</button>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 " *ngIf="iscalltypeupdatebutton" >
+                                                        <div class="form-actions">
+                                                            <button [disabled]="registerForm.pristine || registerForm.invalid" class="btn btn-primary" style="margin: 8px;">Update</button>
+                                                            <button (click)="cancel_form()" type="button" class="btn btn-inverse">Cancel</button>
+                                                        </div>
+                                                        </div>
 
                                             
                                             
                                         
                                     </div></form>
 
-                                    <div class="row">
+                                     <div class="row">
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body" style="padding: 0px;">
@@ -113,34 +113,17 @@
                                                             </thead>
                                                             
                                                             <tbody> 
-                                                                                         <tr >
-                                                                                            <td>1</td>
-                                                                                            <td>Department1</td>
-                                                                                            <td>Doctor1</td>
-                                                                                            <td>Doctor Note</td>
-                                                                                            <td style="cursor:pointer">Edit</td>
-                                                                                            <td style="cursor:pointer">Delete</td>
+                                                                                         <tr *ngFor="let viewknowldgebasemaster of viewknowldgebasemaster$" >
+                                                                                            <td>{{viewknowldgebasemaster.sl}}</td>
+                                                                                            <td>{{viewknowldgebasemaster.departname}}</td>
+                                                                                            <td>{{viewknowldgebasemaster.depuser_name}}</td>
+                                                                                            <td>{{viewknowldgebasemaster.knowldge}}</td>
+                                                                                            <td (click)="editviewkm(viewknowldgebasemaster.typId)" style="cursor:pointer">Edit</td>
+                                                                                            <td (click)="deletetype(viewknowldgebasemaster.typId)" style="cursor:pointer">Delete</td>
                                                                                             
                                                                                         </tr>
 
-                                                                                        <tr >
-                                                                                            <td>2</td>
-                                                                                            <td>Department2</td>
-                                                                                            <td>Doctor2</td>
-                                                                                            <td>Insurance/Billing</td>
-                                                                                            <td style="cursor:pointer">Edit</td>
-                                                                                            <td style="cursor:pointer">Delete</td>
-                                                                                            
-                                                                                        </tr>
-                                                                                        <tr >
-                                                                                            <td>3</td>
-                                                                                            <td>Department3</td>
-                                                                                            <td>Doctor3</td>
-                                                                                            <td>Promo</td>
-                                                                                            <td style="cursor:pointer">Edit</td>
-                                                                                            <td style="cursor:pointer">Delete</td>
-                                                                                            
-                                                                                        </tr>
+                                                                                       
                                                                                        
                                                             </tbody>
                                                         </table>
@@ -161,11 +144,12 @@
                 </div>
             </div>
 
-        
-
-           
-
-           
+            <div class="card-content" (click)="msgclose()" *ngIf="msgview" >
+                <div class="alert alert-primary alert-dismissible fade show">
+                    <button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>{{msg}}</strong> 
+                </div>
+            </div>
         </div>
       
 

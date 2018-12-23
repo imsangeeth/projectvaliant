@@ -6,12 +6,14 @@ import { ReportsComponent } from './reports/reports.component';
 import { MasterpagecallnoteComponent } from './masterpagecallnote/masterpagecallnote.component';
 import { MasterpagektComponent } from './masterpagekt/masterpagekt.component';
 import { HomeComponent } from './home/home.component';
+import { MasterdepartmentComponent } from './masterdepartment/masterdepartment.component';
+import { MastersmstempComponent } from './mastersmstemp/mastersmstemp.component';
 
 
 
 const routes: Routes = [
 
-  {
+  { 
     path: '',
     component: HomeComponent,
    // canActivate:[AuthGuard]
@@ -20,6 +22,11 @@ const routes: Routes = [
   path: 'viewuserpage',
   component: CallviewscreenComponent,
  // canActivate:[AuthGuard]
+  },
+  {
+    path: 'viewuserpage/:agname/:phone/:topic/:ky',
+    component: CallviewscreenComponent,
+   // canActivate:[AuthGuard]
   },
   {
     path: 'knowledge',
@@ -39,6 +46,16 @@ const routes: Routes = [
   {
     path: 'masterpagekt',
     component: MasterpagektComponent,
+   // canActivate:[AuthGuard]
+  },
+  {
+    path: 'masterdepartment',
+    component: MasterdepartmentComponent,
+   // canActivate:[AuthGuard]
+  },
+  {
+    path: 'smstemplate',
+    component: MastersmstempComponent,
    // canActivate:[AuthGuard]
   }
 

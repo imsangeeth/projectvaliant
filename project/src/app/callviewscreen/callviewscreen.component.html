@@ -3,7 +3,7 @@
 
 <mat-card>
 
-        <div id="main-wrapper" style="margin-top: 85px;">
+        <div id="main-wrapper" style="margin-top: 85px;"> 
               
                 <!-- End header header -->
                 <!-- Left Sidebar  -->
@@ -19,7 +19,7 @@
                             <ol class="breadcrumb">
                                 <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                                 <li class="breadcrumb-item active">Dashboard</li> -->
-                                <input class="form-control input-sm" type="textbox" placeholder="Search" >
+                                <input class="form-control input-sm" type="textbox" placeholder="Search" ><a  routerLink="/viewuserpage/ram/03912939/12/12wqeqe" >Search</a>
                             </ol>
                         </div>
                     </div>
@@ -245,15 +245,15 @@
                                                              <hr></div>
                                                         <div class="row" style="overflow: hidden;">
                                                                 <div class="col-md-12">
-                                                           <form style="overflow-x: hidden" >
+                                                           <form style="overflow-x: hidden" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
                                                                         <div class="row" style="margin-top: 2%">
                                                                                 <div class="col-md-6 ">
                                                                                         <div class="form-group">
                                                                                             <label>Call Reasons </label><span>*</span>
-                                                                                            <select  name="Reason"  class="form-control custom-select" >
+                                                                                            <select  name="Reason" formControlName="Reason" class="form-control custom-select" >
                                                                                                 <option value="">Choose Reasons</option>
-                                                                                                <option >Appointment</option>
-                                                                                                <option >Cancellation</option>
+                                                                                                <option *ngFor="let call_reason of call_reason$" value="{{call_reason.typId}}">{{call_reason.calltype}}</option>
+                                                                                               
                                                                                               
                                                                                           </select> 
                                                                                            
@@ -262,33 +262,20 @@
                                                                                         <div class="col-md-6 ">
                                                                                         <div class="form-group">
                                                                                             <label>Call status</label><span>*</span>
-                                                                                            <select  name="Reason"  class="form-control custom-select">
+                                                                                            <select  name="status" formControlName="status"  class="form-control custom-select">
                                                                                                 <option value="">Select Status</option>
-                                                                                                <option >Open</option>
-                                                                                                <option >Close</option>
-                                                                                                <option >Followup</option>
-                                                                                                
+                                                                                                <option *ngFor="let calltype of call_type$" value="{{calltype.typId}}" >{{calltype.calltype}}</option>
                                                                                           </select>
                                                                                           
                                                                                         </div>
                                                                                           </div>
 
-                                                                                          <div class="col-md-6 ">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Appointment branch</label><span>*</span>
-                                                                                                    <select  name="Reason"  class="form-control custom-select">
-                                                                                                        <option value="">Select branch</option>
-                                                                                                        <option >branch one</option>
-                                                                                                        <option >branch two</option>
-                                                                                                  </select>
-                                                                                                  
-                                                                                                </div>
-                                                                                         </div>
+                                                                                          
                         
                                                                                           <div class="col-md-6 ">
                                                                                                 <div class="form-group">
                                                                                                     <label>Call direction </label><span>*</span>
-                                                                                                    <input type="text" name="firstname"  class="form-control"  />
+                                                                                                    <input type="text" formControlName="calldirection" name="calldirection"  class="form-control"  />
                                         
                                                                                                 </div>
                                                                                            </div>
@@ -296,7 +283,7 @@
                                                                                            <div class="col-md-6 ">
                                                                                                 <div class="form-group">
                                                                                                     <label>Comments  </label><span>*</span>
-                                                                                                    <input type="text" name="firstname"  class="form-control"  />
+                                                                                                    <input type="text" formControlName="Comments" name="Comments"  class="form-control"  />
                                         
                                                                                                 </div>
                                                                                            </div>
@@ -305,11 +292,17 @@
                                                                                         <div class="col-md-6 "></div>
                                                                                         <div class="col-md-6 ">
                                                                                         <div class="form-actions">
-                                                                                            <button  class="btn btn-primary" style="margin: 8px;">Create</button>
+                                                                                            <button [disabled]="registerForm.pristine || registerForm.invalid"  class="btn btn-primary" style="margin: 8px;">Create</button>
                                                                                             <button  type="button" class="btn btn-inverse">Cancel</button>
                                                                                         </div>
                                                                                         </div>
-                                                                                    
+                                                                                        
+                                                                                        <div class="card-content" (click)="msgclose()" *ngIf="msgview" >
+                                                                                            <div class="alert alert-primary alert-dismissible fade show">
+                                                                                                <button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                                <strong>{{msg}}</strong> 
+                                                                                            </div>
+                                                                                        </div>   
                                                                                 
                                                                             </div></form></div>
 
@@ -324,42 +317,35 @@
                                                                     <div class="col-12">
                                                                         <div class="card">
                                                                             <div class="card-body">
-                                                                                    <h5 class="box-title m-t-40">Create New Services </h5>
+                                                                                    <h5 class="box-title m-t-40">Call History</h5>
                                                                                     <hr>
                                                                                 <div class="table-responsive m-t-40">
                                                                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                                                                         <thead>
                                                                                                  <tr>
                                                                                                                                 <th>Sl No</th>
-                                                                                                                                <th>Last agent name </th>
+                                                                                                                                
                                                                                                                                 <th>Call Reasons</th>
                                                                                                                                 <th>Call status</th>
-                                                                                                                                <th>Appointment branch</th>
+                                                                                                                                
                                                                                                                                 <th>Call Direction</th>
                                                                                                                                 <th>Comment</th>
+                                                                                                                                <th>Comment time</th>
                                                                                                                         </tr>
                                                                                         </thead>
                                                                                         
                                                                                         <tbody> 
-                                                                                                                 <tr >
-                                                                                                                        <td>1</td>
-                                                                                                                        <td>Sam</td>
-                                                                                                                        <td>Reason 1</td>
-                                                                                                                        <td>Open</td>
-                                                                                                                        <td>Dubai</td>
-                                                                                                                        <td></td>
-                                                                                                                        <td>New Customer</td>
+                                                                                                                 <tr *ngFor="let call_note of call_note$">
+                                                                                                                        <td>{{call_note.slno}}</td>
+                                                                                                                        <td>{{call_note.callreason}}</td>
+                                                                                                                        <td>{{call_note.calltype}}</td>
+                                                                                                                        <td>{{call_note.calldirection}}</td>
+                                                                                                                        <td>{{call_note.comment}}</td>
+                                                                                                                        <td>{{call_note.callNoteTime}}</td>
+                                                                                                                
                                                                                                                     </tr>
 
-                                                                                                                    <tr >
-                                                                                                                            <td>2</td>
-                                                                                                                            <td>Ram</td>
-                                                                                                                            <td>Reason 2</td>
-                                                                                                                            <td>Closed</td>
-                                                                                                                            <td>Sharja</td>
-                                                                                                                            <td>media</td>
-                                                                                                                            <td>New Customer</td>
-                                                                                                                        </tr>
+                                                                                                                 
                                                                                         </tbody>
                                                                                     </table>
                                                                                 </div>
@@ -462,18 +448,15 @@
                                                                                             <h5 class="box-title m-t-40">Knowledge base</h5>
                                                                                             <hr>
                                                                                             
-                                                                                            <form>
+                                                                                            <form  [formGroup]="knowldgeForm" (ngSubmit)="kmfSubmit()">
                                                                                             <div class="row">
                                                                                                 
                                                                                                   <div class="col-md-6 ">
                                                                                                   <div class="form-group">
                                                                                                                 <label>Department<span>*</span></label>                                                          
-                                                                                                                <select  name="Individual_sevan"  class="form-control custom-select">
+                                                                                                                <select  (change)="onChangecategory($event.target.value)" formControlName="DepartmentName"  class="form-control custom-select">
                                                                                                                     <option value="">Please Choose One</option>
-                                                                                                                <option  value="department1">Specialist Obstetrician and Gynecologist</option>
-                                                                                                                <option  value="department2">Consultant Radiologist</option>
-                                                                                                                <option  value="department2">Consultant Pediatrician</option>
-                                                                                                                <option  value="department2">Consultant Dermatology</option>
+                                                                                                                    <option  *ngFor="let viewdepartment of viewdepartment$" value="{{viewdepartment.typId}}">{{viewdepartment.department}}</option>
                                                                                                                </select>
                                                                                                                 
                                                                                                             </div>
@@ -482,12 +465,9 @@
                                                                                                             <div class="col-md-6 ">
                                                                                                                 <div class="form-group">
                                                                                                                               <label>Doctor<span>*</span></label>                                                          
-                                                                                                                              <select  name="Individual_sevan"  class="form-control custom-select">
+                                                                                                                              <select formControlName="Doctor"  class="form-control custom-select">
                                                                                                                                   <option value="">Please Choose One</option>
-                                                                                                                              <option  value="Doctor1">Dr. Amal Badi</option>
-                                                                                                                              <option  value="Doctor2">Dr. Alexander Milson</option>
-                                                                                                                              <option  value="Doctor3">Dr. Badi Alatasi</option>
-                                                                                                                              <option  value="Doctor4">Dr. Christina Engman</option>
+                                                                                                                                  <option *ngFor="let viewdepartment of viewdepartmentuser$"  value="{{viewdepartment.id}}">{{viewdepartment.department}}</option>
                                                                                                                               
                                                                                                                              </select>
                                                                                                                              
@@ -498,7 +478,7 @@
                                                                                                          
                                                                                                             <div class="col-md-6" >
                                                                                                             <div class="form-actions">
-                                                                                                                <button (click)="show()"  class="btn btn-primary" style="margin: 8px;">Check</button>
+                                                                                                                <button [disabled]="knowldgeForm.pristine || knowldgeForm.invalid"  class="btn btn-primary" style="margin: 8px;">Check</button>
                                                                                                                 <button  type="button" class="btn btn-inverse">Cancel</button>
                                                                                                             </div>
                                                                                                             </div>
@@ -520,7 +500,7 @@
                                                                                                                         
                                                                                                                         <tbody> 
                                                                                                                                                      <tr >
-                                                                                                                                                        <td>i am not available tomorrow</td>
+                                                                                                                                                        <td>{{ktview.doctornote}}</td>
                                                             
                                                                                                                                                     </tr>
                                                                                                                                                    
@@ -545,7 +525,7 @@
                                                                                                                         
                                                                                                                         <tbody> 
                                                                                                                                                      <tr >
-                                                                                                                                                        <td>booking </td>
+                                                                                                                                                        <td>{{ktview.doctorbook}} </td>
                                                                                                                                                                                                                                            
                                                                                                                                                     </tr>
                                                                                                                                                    
@@ -570,8 +550,7 @@
                                                                                                                         
                                                                                                                         <tbody> 
                                                                                                                                                      <tr >
-                                                                                                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                                                                                                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</td>
+                                                                                                                                                        <td>{{ktview.promo}}</td>
                                                                                                                                                       
                                                                                                                                                         
                                                                                                                                                     </tr>
@@ -597,8 +576,7 @@
                                                                                                                         
                                                                                                                         <tbody> 
                                                                                                                                                      <tr >
-                                                                                                                                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                                                                                                                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</td>
+                                                                                                                                                        <td>{{ktview.insurance}}</td>
                                                                                                                                                        
                                                                                                                                                         
                                                                                                                                                     </tr>
@@ -640,21 +618,21 @@
                                                                             
                                                                                 <div class="form-body">
                                                     
-                                                                                    <h5 class="box-title m-t-40">Knowledge base</h5>
+                                                                                    <h5 class="box-title m-t-40">Send SMS</h5>
                                                                                     <hr>
                                                                                     
                                                                                     <form>
                                                         <div class="row">
                                                                 <div class="col-md-6">
-                                                                        <form style="overflow-x: hidden" >
+                                                                        <form style="overflow-x: hidden"  [formGroup]="smssendtemplate" (ngSubmit)="sendsms()" >
                                                                                      <div class="row" style="margin-top: 2%">
                                                                                              <div class="col-md-6 ">
                                                                                                      <div class="form-group">
                                                                                                          <label>Select Template</label><span>*</span>
-                                                                                                         <select  name="Reason"  class="form-control custom-select" >
+                                                                                                         <select (change)="checkdescrption($event.target.value)" formControlName="Template" class="form-control custom-select" >
                                                                                                              <option value="">Choose Template</option>
-                                                                                                             <option >Template One</option>
-                                                                                                             <option >Template Two</option>
+                                                                                                             <option *ngFor="let view_smstemplate of view_smstemplate$" value="{{view_smstemplate.typId}}" >{{view_smstemplate.heading}}</option>
+                                                                                                            
                                                                                                            
                                                                                                        </select> 
                                                                                                         
@@ -663,25 +641,26 @@
                                                                                                        <div class="col-md-6 ">
                                                                                                             <div class="form-group">
                                                                                                                 <label>Phone Number</label><span>*</span>
-                                                                                                                <input type="text" class="form-control" >
+                                                                                
+                                                                                                                <input type="text" formControlName="phonenumbersms" class="form-control" >
                                                                                                                
                                                                                                             </div>
                                                                                                               </div>           
              
-                                                                                                        <div class="col-md-6 ">
+                                                                                                        <div class="col-md-12">
                                                                                                              <div class="form-group">
                                                                                                                  <label>Message  </label><span>*</span>
-                                                                                                                 <textarea class="form-control" ></textarea>
+                                                                                                                 <textarea formControlName="Messagesms" class="form-control" ></textarea>
                                                                                                                 
                                                      
-                                                                                                             </div>
+                                                                                                             </div> 
                                                                                                         </div>
                   
                                                                                                      <div class="col-md-6 "></div>
                                                                                                      <div class="col-md-6 "></div>
                                                                                                      <div class="col-md-6 ">
                                                                                                      <div class="form-actions">
-                                                                                                         <button  class="btn btn-primary" style="margin: 8px;">Send SMS</button>
+                                                                                                         <button [disabled]="smssendtemplate.pristine || smssendtemplate.invalid" class="btn btn-primary" style="margin: 8px;">Send SMS</button>
                                                                                                          <button  type="button" class="btn btn-inverse">Cancel</button>
                                                                                                      </div>
                                                                                                      </div>

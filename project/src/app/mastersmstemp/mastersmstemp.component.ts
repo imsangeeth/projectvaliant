@@ -4,18 +4,20 @@ import { Observable } from 'rxjs';
 import { FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-masterpagecallnote',
-  templateUrl: './masterpagecallnote.component.html',
-  styleUrls: ['./masterpagecallnote.component.css']
+  selector: 'app-mastersmstemp',
+  templateUrl: './mastersmstemp.component.html',
+  styleUrls: ['./mastersmstemp.component.css']
 })
-export class MasterpagecallnoteComponent implements OnInit {
+export class MastersmstempComponent implements OnInit {
 
   registerForm: FormGroup;
   callreasonForm: FormGroup;
   submitted = false;
   callsubmitted = false;
-  Calltype: string = '';
-  callreason:string = '';
+  DepartmentName: string = '';
+  userdepartment: string = '';
+  email:string = '';
+  username:string = '';
   msg:string = '';
   bgcolor:string = '';
   msgview:boolean = false;
@@ -27,31 +29,38 @@ export class MasterpagecallnoteComponent implements OnInit {
   iscallreasonupdatebutton:boolean = false;
   updatedId  = 0;
   updatedreasonId= 0;
+  Description : string = '';
 
   constructor(private formBuilder: FormBuilder,private data: DataService) { }
 
-  ngOnInit() {
+  angularForm = new FormGroup ({
+    name: new FormControl()
+  });
+
+ ngOnInit() {
 
     this.registerForm = this.formBuilder.group({
-      Calltype: ['', Validators.required],
+      DepartmentName: ['', Validators.required],
+      Description: ['', Validators.required],
     });
 
     this.callreasonForm = this.formBuilder.group({
-      callreason: ['', Validators.required],
+      username: ['', Validators.required],
+      userdepartment : ['', Validators.required],
+      email : ['', Validators.required],
     });
 
-    this.data.viewcalltype().subscribe(
+    this.data.viewsmstemplate().subscribe(
       data => this.calltype$ = data  
     );
 
-    this.data.viewcallreason().subscribe(
-      data => this.callreason$ = data  
-    );
+   
 
   }
 
   get f() { return this.registerForm.controls; }
   get call() { return this.callreasonForm.controls; }
+
 
   onSubmit() {
 
@@ -63,25 +72,32 @@ export class MasterpagecallnoteComponent implements OnInit {
     }
 
     var  contact  = {
-      Calltype:  this.registerForm.get('Calltype').value,
+      DepartmentName:  this.registerForm.get('DepartmentName').value,
+      Description:  this.registerForm.get('Description').value,
       updatedval:  this.updatedId
       };
 
+
+      console.log(contact);
+
   
-    this.data.createcalltype(contact).subscribe((response) => {
+     this.data.createknowldge(contact).subscribe((response) => {
 
        this.registerForm.reset();
   
-       this.msg = response['msg'];
-       this.bgcolor = response['bgcolor'];
-       this.msgview = true;
+      this.msg = response['msg'];
+      this.bgcolor = response['bgcolor'];
+      this.msgview = true;
+
+       this.data.viewsmstemplate().subscribe(
+      data => this.calltype$ = data  
+    );
     
-       this.data.viewcalltype().subscribe(
-        data => this.calltype$ = data  
-      );
+     
+
+     });
 
 
-    });
 
    }
 
@@ -98,9 +114,10 @@ export class MasterpagecallnoteComponent implements OnInit {
       callnu: ky,
       };
 
-      this.data.editcalltype(edittype).subscribe((response) => {
+      this.data.editknow(edittype).subscribe((response) => {
 
-        this.registerForm.controls['Calltype'].setValue(response['calltype']);
+        this.registerForm.controls['DepartmentName'].setValue(response['title']);
+        this.registerForm.controls['Description'].setValue(response['description']);
       
       });
   
@@ -119,9 +136,11 @@ export class MasterpagecallnoteComponent implements OnInit {
       callnu: ky,
       };
 
-      this.data.editcallreason(edittype).subscribe((response) => {
+      this.data.editdepartmentuser(edittype).subscribe((response) => {
 
-        this.callreasonForm.controls['callreason'].setValue(response['callreason']);
+        this.callreasonForm.controls['userdepartment'].setValue(response['department']);
+        this.callreasonForm.controls['username'].setValue(response['name']);
+        this.callreasonForm.controls['email'].setValue(response['email']);
       
       });
   
@@ -135,15 +154,16 @@ export class MasterpagecallnoteComponent implements OnInit {
       callnu: ky,
       };
 
-      this.data.deletecalltype(edittype).subscribe((response) => {
+      this.data.deletedknowldge(edittype).subscribe((response) => {
 
         this.msg = response['msg'];
         this.bgcolor = response['bgcolor'];
         this.msgview = true;
 
-        this.data.viewcalltype().subscribe(
+        this.data.viewsmstemplate().subscribe(
           data => this.calltype$ = data  
         );
+        
       });
    }
 
@@ -154,13 +174,13 @@ export class MasterpagecallnoteComponent implements OnInit {
       callnu: ky,
       };
 
-      this.data.deletecallreason(edittype).subscribe((response) => {
+      this.data.deletedepartmentuser(edittype).subscribe((response) => {
 
         this.msg = response['msg'];
         this.bgcolor = response['bgcolor'];
         this.msgview = true;
 
-        this.data.viewcallreason().subscribe(
+        this.data.viewdepartmentuser().subscribe(
           data => this.callreason$ = data  
         );
 
@@ -180,25 +200,27 @@ export class MasterpagecallnoteComponent implements OnInit {
     }
 
     var contact  = {
-      callreason:  this.callreasonForm.get('callreason').value,
+      username:  this.callreasonForm.get('username').value,
+      userdepartment:  this.callreasonForm.get('userdepartment').value,
+      email:  this.callreasonForm.get('email').value,
       updatedval:  this.updatedreasonId
       };
 
     console.log(contact);
 
-    this.data.createcallreason(contact).subscribe((response) => {
+     this.data.createdepartmentuser(contact).subscribe((response) => {
 
-      this.callreasonForm.reset();
+     this.callreasonForm.reset();
   
       this.msg = response['msg'];
       this.bgcolor = response['bgcolor'];
       this.msgview = true;
 
-      this.data.viewcallreason().subscribe(
-        data => this.callreason$ = data  
+      this.data.viewdepartmentuser().subscribe(
+      data => this.callreason$ = data  
       );
     
-    });
+       });
 
   }
 
@@ -213,7 +235,8 @@ export class MasterpagecallnoteComponent implements OnInit {
   this.updatedId = 0;
   this.iscalltypebutton = true;
   this.iscalltypeupdatebutton = false;
-  this.registerForm.controls['Calltype'].setValue('');
+  this.registerForm.controls['DepartmentName'].setValue('');
+  this.registerForm.controls['Description'].setValue('');
  }
 
  cancel_reason_form()
@@ -221,10 +244,10 @@ export class MasterpagecallnoteComponent implements OnInit {
   this.updatedreasonId = 0;
   this.iscallreasonbutton = true;
   this.iscallreasonupdatebutton = false;
-  this.registerForm.controls['callreason'].setValue('');
+  this.callreasonForm.controls['userdepartment'].setValue('');
+  this.callreasonForm.controls['username'].setValue('');
+  this.callreasonForm.controls['email'].setValue('');
  }
 
-  
-  
 
-}
+} 

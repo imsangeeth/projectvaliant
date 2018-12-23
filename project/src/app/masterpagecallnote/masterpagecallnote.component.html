@@ -24,33 +24,37 @@
                         
                             <div class="form-body">
 
-                                <h5 class="box-title m-t-40">Call Reason</h5>
+                                <h5 class="box-title m-t-40">Call Status</h5>
                                 <hr>
                                 
-                                <form >
+                                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
                                 <div class="row">
                                     
                                       <div class="col-md-6 ">
                                       <div class="form-group">
-                                                    <label>Call Reason<span>*</span></label>                                                          
-                                                    <input type="text" name="Calltype"   class="form-control" />
+                                                    <label>Call Status<span>*</span></label>                                                          
+                                                    <input type="text" formControlName="Calltype" name="Calltype"   class="form-control" />
                                                     
                                                 </div>
                                                 </div>
                                                 
                                                 <div class="col-md-6 "></div>
                                              
-                                                <div class="col-md-6 " >
-                                                <div class="form-actions">
-                                                    <button class="btn btn-primary" style="margin: 8px;">Create</button>
-                                                    <button  type="button" class="btn btn-inverse">Cancel</button>
-                                                </div>
-                                                </div>
+                                                <div class="col-md-6 " *ngIf="iscalltypebutton" >
+                                                        <div class="form-actions">
+                                                            <button [disabled]="registerForm.pristine || registerForm.invalid" class="btn btn-primary" style="margin: 8px;">Create</button>
+                                                            <button (click)="cancel_form()" type="button" class="btn btn-inverse">Cancel</button>
+                                                        </div>
+                                                        </div>
 
-                                            
-                                            
-                                        
-                                    </div></form>
+                                                        <div class="col-md-6 " *ngIf="iscalltypeupdatebutton" >
+                                                            <div class="form-actions">
+                                                                <button [disabled]="registerForm.pristine || registerForm.invalid" class="btn btn-primary" style="margin: 8px;">Update</button>
+                                                                <button (click)="cancel_form()" type="button" class="btn btn-inverse">Cancel</button>
+                                                            </div>
+                                                    </div>
+
+                             </div></form>
 
                                     <div class="row">
                                         <div class="col-12">
@@ -61,28 +65,21 @@
                                                             <thead>
                                                                      <tr>
                                                                       <th style="width: 16%;">Sl No</th>
-                                                                      <th style="width: 80%;">Call Reason</th>
+                                                                      <th style="width: 80%;">Call Status</th>
                                                                       <th></th>
                                                                       <th></th>
                                                                       </tr>
                                                             </thead>
                                                             
                                                             <tbody> 
-                                                                                         <tr >
-                                                                                            <td>1</td>
-                                                                                            <td>Appointment</td>
-                                                                                            <td style="cursor:pointer">Edit</td>
-                                                                                            <td style="cursor:pointer">Delete</td>
-                                                                                            
+                                                                                         <tr *ngFor="let calltype of calltype$">
+                                                                                            <td>{{calltype.snof}}</td>
+                                                                                              <td>{{calltype.calltype}}</td>
+                                                                                              <td (click)="editcalltype(calltype.typId)" style="cursor:pointer">Edit</td>
+                                                                                              <td (click)="deletetype(calltype.typId)" style="cursor:pointer">Delete</td> 
                                                                                         </tr>
 
-                                                                                        <tr >
-                                                                                            <td>2</td>
-                                                                                            <td>Cancellation</td>
-                                                                                            <td style="cursor:pointer">Edit</td>
-                                                                                            <td style="cursor:pointer">Delete</td>
-                                                                                            
-                                                                                        </tr>
+                                                                                       
                                                                                        
                                                             </tbody>
                                                         </table>
@@ -111,32 +108,36 @@
                         
                             <div class="form-body">
 
-                                <h5 class="box-title m-t-40">Call Status</h5>
+                                <h5 class="box-title m-t-40">Call Reason</h5>
                                 <hr>
                                 
-                                <form >
+                                <form [formGroup]="callreasonForm" (ngSubmit)="callsubmit()">
                                 <div class="row">
                                     
                                       <div class="col-md-6 ">
                                       <div class="form-group">
-                                                    <label>Call Status<span>*</span></label>                                                          
-                                                    <input type="text" name="callreason"  class="form-control" />
+                                                    <label>Call Reason<span>*</span></label>                                                          
+                                                    <input type="text" name="callreason"  formControlName="callreason"  class="form-control" />
                                                    
                                                 </div>
                                                 </div>
                                                 
                                                 <div class="col-md-6 "></div>
                                              
-                                                <div class="col-md-6" >
-                                                <div class="form-actions">
-                                                    <button  class="btn btn-primary" style="margin: 8px;">Create</button>
-                                                    <button  type="button" class="btn btn-inverse">Cancel</button>
-                                                </div>
-                                                </div>
+                                                <div class="col-md-6"  *ngIf="iscallreasonbutton">
+                                                        <div class="form-actions">
+                                                            <button [disabled]="callreasonForm.pristine || callreasonForm.invalid" class="btn btn-primary" style="margin: 8px;">Create</button>
+                                                            <button (click)="cancel_form()" type="button" class="btn btn-inverse">Cancel</button>
+                                                        </div>
+                                                        </div>
 
-                                               
-                                            
-                                        
+                                                        <div class="col-md-6"  *ngIf="iscallreasonupdatebutton">
+                                                            <div class="form-actions">
+                                                                <button [disabled]="callreasonForm.pristine || callreasonForm.invalid" class="btn btn-primary" style="margin: 8px;">Update</button>
+                                                                <button (click)="cancel_form()" type="button" class="btn btn-inverse">Cancel</button>
+                                                            </div>
+                                                            </div>
+
                                     </div></form>
 
                                     <div class="row">
@@ -148,35 +149,23 @@
                                                             <thead>
                                                                      <tr>
                                                                       <th style="width: 16%;">Sl No</th>
-                                                                      <th style="width: 80%;">Call Status</th>
+                                                                      <th style="width: 80%;">Call Reason</th>
                                                                       <th></th>
                                                                       <th></th>
                                                                       </tr>
                                                             </thead>
                                                             
                                                             <tbody> 
-                                                                      <tr>
-                                                                                            <td>1</td>
-                                                                                            <td>Followup</td>
-                                                                                            <td  style="cursor:pointer">Edit</td>
-                                                                                            <td  style="cursor:pointer">Delete</td>
-                                                                                            
-                                                                     </tr>
 
-                                                                     <tr>
-                                                                        <td>2</td>
-                                                                        <td>Open</td>
-                                                                        <td  style="cursor:pointer">Edit</td>
-                                                                        <td  style="cursor:pointer">Delete</td>
-                                                                        
-                                                                   </tr>
-                                                                   <tr>
-                                                                      <td>2</td>
-                                                                      <td>Close</td>
-                                                                      <td  style="cursor:pointer">Edit</td>
-                                                                      <td  style="cursor:pointer">Delete</td>
-                                                                      
-                                                                 </tr>
+                                                                <tr *ngFor="let callre of callreason$">
+                                                                    <td>{{callre.sno}}</td>
+                                                                    <td>{{callre.calltype}}</td>
+                                                                    <td (click)="editcallreason(callre.typId)" style="cursor:pointer">Edit</td>
+                                                                    <td (click)="deletereason(callre.typId)" style="cursor:pointer">Delete</td>
+                                                                    
+                                                                </tr>
+
+                                                                     
                                                                                        
                                                             </tbody>
                                                         </table>
@@ -195,7 +184,12 @@
                 </div>
             </div>
 
-           
+            <div class="card-content" (click)="msgclose()" *ngIf="msgview" >
+                    <div class="alert alert-primary alert-dismissible fade show">
+                        <button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>{{msg}}</strong> 
+                    </div>
+                </div>
 
            
         </div>

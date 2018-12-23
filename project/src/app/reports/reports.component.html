@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <!-- Start Page Content -->
+         <!-- Start Page Content -->
         <div class="row justify-content-center">
     <div class="col-lg-12">
         <div class="card">
@@ -25,13 +25,13 @@
                         <h5 class="box-title m-t-40">Reports</h5>
                         <hr>
                         
-                        <form>
+                        <form [formGroup]="ReportForm" (ngSubmit)="reportsubmit()">
                         <div class="row">
                             
                               <div class="col-md-6 ">
                               <div class="form-group">
                                             <label>From date</label>                                                          
-                                            <input type="date" name="fromdate"  class="form-control" />
+                                            <input type="date" name="fromdate" formControlName="fromdate"   class="form-control" />
                                           
                                         </div>
                                         </div>
@@ -39,7 +39,7 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                           <label>To date</label>                                                          
-                                                          <input type="date" name="todate"  class="form-control" />
+                                                          <input type="date" name="todate" formControlName="todate"  class="form-control" />
                                                         
                                                       </div>
                                                       </div>
@@ -47,7 +47,7 @@
                                                      <div class="col-md-6 ">
                                       <div class="form-group">
                                                     <label>Call Status <span>*</span></label>                                                          
-                                                    <select  name="Individual_sevan"  class="form-control custom-select">
+                                                    <select formControlName="callstatus"  class="form-control custom-select">
                                                         <option value="">Please Choose One</option>
                                                         <option  value="department1">Open</option>
                                                         <option  value="department2">close</option>
@@ -59,7 +59,7 @@
                                                  <div class="col-md-6 ">
                                       <div class="form-group">
                                                     <label>Agent Name<span>*</span></label>                                                          
-                                                    <select  name="Individual_sevan"  class="form-control custom-select">
+                                                    <select formControlName="agentname"  class="form-control custom-select">
                                                         <option value="">Please Choose One</option>
                                                     <option  value="department1">Agentname1</option>
                                                     <option  value="department2">Agentname2</option>
@@ -71,7 +71,7 @@
                                                 <div class="col-md-6 ">
                                                     <div class="form-group">
                                                                   <label>Call Reason <span>*</span></label>                                                          
-                                                                  <select  name="Individual_sevan"  class="form-control custom-select">
+                                                                  <select formControlName="callreason"  class="form-control custom-select">
                                                                       <option value="">Please Choose One</option>
                                                                   <option  value="department1">Appointment</option>
                                                                   <option  value="department2">Cancellation</option>
@@ -170,4 +170,13 @@
             </div>
         </div>
     </div>
-    </div></div>
+    </div>
+
+    <div class="card-content" (click)="msgclose()" *ngIf="msgview" >
+        <div class="alert alert-primary alert-dismissible fade show">
+            <button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>{{msg}}</strong> 
+        </div>
+    </div>
+
+</div>

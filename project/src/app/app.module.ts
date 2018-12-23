@@ -13,6 +13,7 @@ import {MatButtonModule, MatCheckboxModule,MatNativeDateModule} from '@angular/m
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { CallviewscreenComponent } from './callviewscreen/callviewscreen.component';
 import { UiModule } from './ui/ui.module';
@@ -22,6 +23,8 @@ import { MasterpagecallnoteComponent } from './masterpagecallnote/masterpagecall
 import { MasterpagektComponent } from './masterpagekt/masterpagekt.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderuserComponent } from './headeruser/headeruser.component';
+import { MasterdepartmentComponent } from './masterdepartment/masterdepartment.component';
+import { MastersmstempComponent } from './mastersmstemp/mastersmstemp.component';
 
 
 @NgModule({
@@ -34,11 +37,14 @@ import { HeaderuserComponent } from './headeruser/headeruser.component';
     MasterpagecallnoteComponent,
     MasterpagektComponent,
     HomeComponent,
-    HeaderuserComponent
+    HeaderuserComponent,
+    MasterdepartmentComponent,
+    MastersmstempComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     UiModule,
     MatCardModule,
     MatTabsModule,

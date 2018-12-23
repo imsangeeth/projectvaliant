@@ -2654,6 +2654,12 @@
     background: #1976d2 none repeat scroll 0 0;
     color: #ffffff;
   }
+  .btn-primary.disabled, .btn-primary:disabled{
+    color: #fff;
+    background-color: #4a784c;
+    border-color: #4a784c;
+    cursor: not-allowed;
+  }
   .panel {
     border-radius: 0;
     margin: 15px 0;
@@ -5891,10 +5897,10 @@
     background-color: #4CAF50 !important;
     border-color: #f1f1f1 !important;
     width: 28%;
-    position: absolute !important;
+    position: fixed !important;
     min-height: 6%;
-    right: 3px;
-    font-size: 14px;
+    right: 2%;
+    font-size: 14px
   }
   .alert-success {
     background-color: #93ede9;
